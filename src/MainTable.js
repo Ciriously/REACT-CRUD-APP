@@ -50,7 +50,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end font-inter font-semibold mb-4">
         <input
           type="text"
           placeholder="Search..."
@@ -67,7 +67,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="font-inter text-black">
           <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cveId")}
@@ -75,7 +75,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 CVE-ID
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("severity")}
@@ -83,7 +83,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 Severity
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cvss")}
@@ -91,7 +91,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 CVSS
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("affectedPackages")}
@@ -99,7 +99,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 Affected Packages
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cweId")}

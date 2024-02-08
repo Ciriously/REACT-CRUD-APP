@@ -1,5 +1,3 @@
-// CVEManagement.js
-
 import React, { useState } from "react";
 import MainTable from "./MainTable";
 import Modal from "./Modal"; // Import your modal component
@@ -35,7 +33,7 @@ const CVEManagement = ({ data }) => {
       <Banner />
       <button
         onClick={handleAddCve}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-inter font-bold py-2 px-4 rounded my-4 transition duration-300 ease-in-out transform hover:scale-105"
       >
         Add CVE
       </button>
