@@ -50,24 +50,24 @@ const MainTable = ({ data, onEdit, onDelete }) => {
 
   return (
     <div className="overflow-x-auto">
-      <div className="mb-4">
+      <div className="flex justify-end mb-4">
         <input
           type="text"
           placeholder="Search..."
           onChange={(e) => handleFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 mr-2"
         />
         <button
           onClick={clearFilter}
-          className="ml-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
+          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
         >
           Clear
         </button>
       </div>
       <table className="min-w-full divide-y divide-gray-200">
-        <thead>
+        <thead className="font-inter text-black">
           <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cveId")}
@@ -75,7 +75,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 CVE-ID
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("severity")}
@@ -83,7 +83,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 Severity
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cvss")}
@@ -91,7 +91,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 CVSS
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("affectedPackages")}
@@ -99,7 +99,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                 Affected Packages
               </button>
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50 text-left text-xs uppercase tracking-wider">
               <button
                 className="focus:outline-none"
                 onClick={() => handleSort("cweId")}
@@ -110,28 +110,28 @@ const MainTable = ({ data, onEdit, onDelete }) => {
             <th className="px-6 py-3 bg-gray-50"></th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="divide-y divide-gray-200">
           {sortedData().map((item, index) => (
             <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{item.cveId}</div>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                <div className="text-sm">{item.cveId}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{item.severity}</div>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                <div className="text-sm">{item.severity}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{item.cvss}</div>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                <div className="text-sm">{item.cvss}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                <div className="text-sm">
                   {Array.isArray(item.affectedPackages) &&
                   item.affectedPackages.length > 0
                     ? item.affectedPackages.join(", ")
                     : "N/A"}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{item.cweId}</div>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                <div className="text-sm">{item.cweId}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button

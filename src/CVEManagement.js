@@ -11,6 +11,7 @@ import {
   confirmDelete,
   cancelDelete,
 } from "./cveUtils";
+import Banner from "./banner";
 
 const CVEManagement = ({ data }) => {
   const [cveData, setCveData] = useState(data);
@@ -31,7 +32,7 @@ const CVEManagement = ({ data }) => {
 
   return (
     <div>
-      <h1>Main Table</h1>
+      <Banner />
       <button
         onClick={handleAddCve}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4"
