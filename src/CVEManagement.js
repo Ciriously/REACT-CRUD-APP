@@ -35,7 +35,7 @@ const CVEManagement = ({ data }) => {
         onClick={handleAddCve}
         className="bg-blue-500 hover:bg-blue-700 text-white font-inter font-bold py-2 px-4 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
       >
-        Add CVE
+        Add new CVE
         <img src="/plus.png" alt="Add Icon" className="ml-2 h-4" />
       </button>
 

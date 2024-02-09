@@ -53,6 +53,21 @@ const MainTable = ({ data, onEdit, onDelete }) => {
     setFilteredData(data);
   };
 
+  const getSeverityColor = (severity) => {
+    switch (severity.toLowerCase()) {
+      case "low":
+        return "bg-green-200 text-green-800";
+      case "medium":
+        return "bg-yellow-200 text-yellow-800";
+      case "high":
+        return "bg-red-200 text-red-800";
+      case "critical":
+        return "bg-purple-200 text-purple-800";
+      default:
+        return "bg-gray-200 text-gray-800";
+    }
+  };
+
   return (
     <div className="overflow-x-auto">
       <div className="flex justify-end font-inter font-semibold my-4">
@@ -126,8 +141,14 @@ const MainTable = ({ data, onEdit, onDelete }) => {
               <td className="px-6 py-4 whitespace-nowrap text-gray-700">
                 <div className="text-sm">{item.cveId}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                <div className="text-sm">{item.severity}</div>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div
+                  className={`text-sm rounded-full px-3 py-1 font-semibold ${getSeverityColor(
+                    item.severity
+                  )}`}
+                >
+                  {item.severity}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-700">
                 <div className="text-sm">{item.cvss}</div>

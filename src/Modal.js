@@ -24,18 +24,22 @@ const Modal = ({ cve, onSave, onCancel }) => {
             name="cveId"
             value={editedCve.cveId}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Severity</label>
-          <input
-            type="text"
+          <select
             name="severity"
             value={editedCve.severity}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+          >
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">CVSS</label>
@@ -44,7 +48,7 @@ const Modal = ({ cve, onSave, onCancel }) => {
             name="cvss"
             value={editedCve.cvss}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
@@ -56,7 +60,7 @@ const Modal = ({ cve, onSave, onCancel }) => {
             name="affectedPackages"
             value={editedCve.affectedPackages}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
@@ -66,7 +70,7 @@ const Modal = ({ cve, onSave, onCancel }) => {
             name="cweId"
             value={editedCve.cweId}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="flex justify-end">
