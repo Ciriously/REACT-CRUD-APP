@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import filterIcon from "./filter.png";
+import editIcon from "./editIcon.svg";
+import deleteIcon from "./deleteIcon.svg";
 
 const MainTable = ({ data, onEdit, onDelete }) => {
   const [filteredData, setFilteredData] = useState(data);
@@ -75,7 +77,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
           type="text"
           placeholder="Search..."
           onChange={(e) => handleFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 mr-2"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 mr-2 w-full sm:w-auto"
         />
         <button
           onClick={clearFilter}
@@ -84,104 +86,102 @@ const MainTable = ({ data, onEdit, onDelete }) => {
           Clear
         </button>
       </div>
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="font-inter text-black">
-          <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-              <img
-                src={filterIcon}
-                alt="Filter"
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
-                onClick={() => handleSort("cveId")}
-              />
-              CVE-ID
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-              <img
-                src={filterIcon}
-                alt="Filter"
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
-                onClick={() => handleSort("severity")}
-              />
-              Severity
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-              <img
-                src={filterIcon}
-                alt="Filter"
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
-                onClick={() => handleSort("cvss")}
-              />
-              CVSS
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-              <img
-                src={filterIcon}
-                alt="Filter"
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
-                onClick={() => handleSort("affectedPackages")}
-              />
-              Affected Packages
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-              <img
-                src={filterIcon}
-                alt="Filter"
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
-                onClick={() => handleSort("cweId")}
-              />
-              CWE-ID
-            </th>
-            <th className="px-6 py-3 bg-gray-50"></th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200">
-          {sortedData().map((item, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                <div className="text-sm">{item.cveId}</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div
-                  className={`text-sm rounded-full px-3 py-1 font-semibold ${getSeverityColor(
-                    item.severity
-                  )}`}
-                >
-                  {item.severity}
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                <div className="text-sm">{item.cvss}</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                <div className="text-sm">
-                  {Array.isArray(item.affectedPackages) &&
-                  item.affectedPackages.length > 0
-                    ? item.affectedPackages.join(", ")
-                    : "N/A"}
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                <div className="text-sm">{item.cweId}</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={() => onEdit(index)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="ml-2 text-red-600 hover:text-red-900"
-                  onClick={() => onDelete(index)}
-                >
-                  Delete
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="font-inter text-black">
+            <tr>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                <img
+                  src={filterIcon}
+                  alt="Filter"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                  onClick={() => handleSort("cveId")}
+                />
+                CVE-ID
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                <img
+                  src={filterIcon}
+                  alt="Filter"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                  onClick={() => handleSort("severity")}
+                />
+                Severity
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                <img
+                  src={filterIcon}
+                  alt="Filter"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                  onClick={() => handleSort("cvss")}
+                />
+                CVSS
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                <img
+                  src={filterIcon}
+                  alt="Filter"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                  onClick={() => handleSort("affectedPackages")}
+                />
+                Affected Packages
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                <img
+                  src={filterIcon}
+                  alt="Filter"
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                  onClick={() => handleSort("cweId")}
+                />
+                CWE-ID
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {sortedData().map((item, index) => (
+              <tr key={index}>
+                <td className="px-6 py-4 whitespace-nowrap font-inter text-gray-700">
+                  <div className="text-xs sm:text-sm">{item.cveId}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div
+                    className={`text-xs sm:text-sm rounded-full px-2 font-inter py-1 text-center font-semibold ${getSeverityColor(
+                      item.severity
+                    )}`}
+                  >
+                    {item.severity}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap font-inter text-gray-700">
+                  <div className="text-xs sm:text-sm">{item.cvss}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                  <div className="text-xs sm:text-sm">
+                    {Array.isArray(item.affectedPackages) &&
+                    item.affectedPackages.length > 0
+                      ? item.affectedPackages.join(", ")
+                      : "N/A"}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap font-inter text-gray-700">
+                  <div className="text-xs sm:text-sm">{item.cweId}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap font-inter text-right text-xs sm:text-sm font-medium">
+                  <button onClick={() => onEdit(index)} className="mr-4">
+                    <img src={editIcon} alt="Edit" className="w-4 h-4" />
+                  </button>
+                  <button onClick={() => onDelete(index)} className="mr-4">
+                    <img src={deleteIcon} alt="Delete" className="w-4 h-4" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
