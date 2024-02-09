@@ -1,5 +1,3 @@
-// cveUtils.js
-
 export const handleEdit = (
   index,
   setCveData,
@@ -42,7 +40,7 @@ export const handleSave = (
     // Update existing CVE record
     updatedData[editedIndex] = editedCve;
   }
-  setCveData(updatedData);
+  setCveData(updatedData); // Update cveData here
   setIsModalOpen(false);
 };
 
@@ -75,7 +73,7 @@ export const confirmDelete = (
   cveData
 ) => {
   const updatedData = cveData.filter((item, index) => index !== deleteIndex);
-  setCveData(updatedData);
+  setCveData(updatedData); // Update cveData here
   setIsDeleteConfirmationOpen(false);
 };
 

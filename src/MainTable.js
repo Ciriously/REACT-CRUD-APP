@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import filterIcon from "./filter.png";
 
 const MainTable = ({ data, onEdit, onDelete }) => {
   const [filteredData, setFilteredData] = useState(data);
@@ -6,6 +7,10 @@ const MainTable = ({ data, onEdit, onDelete }) => {
     key: null,
     direction: "ascending",
   });
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]); // Update filteredData when data prop changes
 
   const handleSort = (key) => {
     let direction = "ascending";
@@ -50,7 +55,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex justify-end font-inter font-semibold mb-4">
+      <div className="flex justify-end font-inter font-semibold my-4">
         <input
           type="text"
           placeholder="Search..."
@@ -67,45 +72,50 @@ const MainTable = ({ data, onEdit, onDelete }) => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="font-inter text-black">
           <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
-              <button
-                className="focus:outline-none"
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <img
+                src={filterIcon}
+                alt="Filter"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
                 onClick={() => handleSort("cveId")}
-              >
-                CVE-ID
-              </button>
+              />
+              CVE-ID
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
-              <button
-                className="focus:outline-none"
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <img
+                src={filterIcon}
+                alt="Filter"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
                 onClick={() => handleSort("severity")}
-              >
-                Severity
-              </button>
+              />
+              Severity
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
-              <button
-                className="focus:outline-none"
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <img
+                src={filterIcon}
+                alt="Filter"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
                 onClick={() => handleSort("cvss")}
-              >
-                CVSS
-              </button>
+              />
+              CVSS
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
-              <button
-                className="focus:outline-none"
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <img
+                src={filterIcon}
+                alt="Filter"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
                 onClick={() => handleSort("affectedPackages")}
-              >
-                Affected Packages
-              </button>
+              />
+              Affected Packages
             </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider">
-              <button
-                className="focus:outline-none"
+            <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <img
+                src={filterIcon}
+                alt="Filter"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
                 onClick={() => handleSort("cweId")}
-              >
-                CWE-ID
-              </button>
+              />
+              CWE-ID
             </th>
             <th className="px-6 py-3 bg-gray-50"></th>
           </tr>

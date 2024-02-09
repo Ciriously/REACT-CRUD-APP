@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainTable from "./MainTable";
-import Modal from "./Modal"; // Import your modal component
+import Modal from "./Modal";
 import {
   handleEdit,
   handleSave,
@@ -33,10 +33,12 @@ const CVEManagement = ({ data }) => {
       <Banner />
       <button
         onClick={handleAddCve}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-inter font-bold py-2 px-4 rounded my-4 transition duration-300 ease-in-out transform hover:scale-105"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-inter font-bold py-2 px-4 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
       >
         Add CVE
+        <img src="/plus.png" alt="Add Icon" className="ml-2 h-4" />
       </button>
+
       <MainTable
         data={cveData}
         onEdit={(index) =>
