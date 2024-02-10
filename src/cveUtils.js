@@ -9,7 +9,10 @@ export const handleEdit = (
 ) => {
   setIsModalOpen(true);
   setEditedIndex(index);
-  setEditedCve(cveData[index]);
+  // Ensure that cveData[index] exists before setting editedCve
+  if (cveData[index]) {
+    setEditedCve(cveData[index]);
+  }
   setValidationError(null);
 };
 
@@ -25,7 +28,6 @@ export const handleSave = (
     !editedCve.cveId ||
     !editedCve.severity ||
     !editedCve.cvss ||
-    !editedCve.affectedPackages ||
     !editedCve.cweId
   ) {
     setValidationError("Please fill in all required fields.");
@@ -38,9 +40,9 @@ export const handleSave = (
     updatedData.push(editedCve);
   } else {
     // Update existing CVE record
-    updatedData[editedIndex] = editedCve;
+    updatedData[editedIndex] = { ...updatedData[editedIndex], ...editedCve };
   }
-  setCveData(updatedData); // Update cveData here
+  setCveData(updatedData);
   setIsModalOpen(false);
 };
 
@@ -52,7 +54,7 @@ export const handleCancel = (
 ) => {
   setIsModalOpen(false);
   setEditedIndex(null);
-  setEditedCve({});
+  setEditedCve({}); // Reset editedCve to an empty object
   setValidationError(null);
 };
 
@@ -62,8 +64,9 @@ export const handleDelete = (
   setIsDeleteConfirmationOpen,
   setDeleteIndex
 ) => {
+  console.log("Index to delete:", index); // Log the index to be deleted
   setIsDeleteConfirmationOpen(true);
-  setDeleteIndex(index);
+  setDeleteIndex(index); // Pass the index of the item to be deleted
 };
 
 export const confirmDelete = (
