@@ -81,9 +81,9 @@ const MainTable = ({ data, onEdit, onDelete }) => {
         />
         <button
           onClick={clearFilter}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
+          className="px-3 py-1 bg-gray-200 text-gray-700 rounded-md mr-5"
         >
-          Clear
+          Reset
         </button>
       </div>
       <div className="overflow-x-auto">
@@ -122,7 +122,11 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                   className="flex items-center cursor-pointer"
                   onClick={() => handleSort("affectedPackages")}
                 >
-                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  <img
+                    src={filterIcon}
+                    alt="Filter"
+                    className="w-4  h-4 mr-1"
+                  />
                   Affected Packages
                 </div>
               </th>
@@ -135,7 +139,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                   CWE-ID
                 </div>
               </th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
+              <th className="px-6 py-3 bg-gray-50 text-right text-s uppercase tracking-wider relative">
                 Actions
               </th>
             </tr>
@@ -159,7 +163,7 @@ const MainTable = ({ data, onEdit, onDelete }) => {
                   <div className="text-xs sm:text-sm">{item.cvss}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                  <div className="text-xs sm:text-sm">
+                  <div className="text-xs font-inter sm:text-sm">
                     {Array.isArray(item.affectedPackages) &&
                     item.affectedPackages.length > 0
                       ? item.affectedPackages.join(", ")

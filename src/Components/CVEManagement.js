@@ -44,8 +44,8 @@ const CVEManagement = ({ data }) => {
 
   return (
     <div className="container mx-auto">
-      <div className="md:flex md:justify-between md:items-center">
-        <div className="text-black font-inter p-4 text-center">
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
+        <div className="text-black font-inter p-4 text-center md:text-left">
           <h1 className="text-4xl mb-1 font-semibold">CVE RECORDS</h1>
           <p className="text-lg text-gray-500">
             Manage and track your CVE records
@@ -53,7 +53,7 @@ const CVEManagement = ({ data }) => {
         </div>
         <button
           onClick={handleAddCve}
-          className="bg-blue-500 hover:bg-blue-800 text-white font-inter font-bold py-3 px-5 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center md:order-2"
+          className="self-end bg-blue-500 hover:bg-blue-800 text-white font-inter font-bold py-3 px-5 mr-5 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center md:mt-0"
         >
           <img src="/plus.png" alt="Add Icon" className="mr-2 h-4" />
           Add new CVE
