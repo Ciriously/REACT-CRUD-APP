@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import MainTable from "../MainTable";
 import Modal from "./Modal";
 import {
-  handleEdit,
   handleSave,
   handleCancel,
   handleDelete,
@@ -34,12 +33,24 @@ const CVEManagement = ({ data }) => {
     setValidationError(null);
   };
 
-  const handleEdit = (index) => {
+  const handleEditClick = (index) => {
     setIsModalOpen(true);
     setEditedIndex(index);
-    // Update editedCve with the existing CVE data, including affected packages
     setEditedCve({ ...cveData[index] });
     setValidationError(null);
+  };
+
+  const handleConfirmDelete = () => {
+    confirmDelete(
+      deleteIndex,
+      setCveData,
+      setIsDeleteConfirmationOpen,
+      cveData
+    );
+  };
+
+  const handleCancelDelete = () => {
+    cancelDelete(setIsDeleteConfirmationOpen, setDeleteIndex);
   };
 
   return (
@@ -62,30 +73,16 @@ const CVEManagement = ({ data }) => {
 
       <MainTable
         data={cveData}
-        onEdit={(index) =>
-          handleEdit(
-            index,
-            setCveData,
-            setIsModalOpen,
-            setEditedIndex,
-            setEditedCve,
-            setValidationError,
-            cveData
-          )
-        }
-        onDelete={(index) =>
-          handleDelete(
-            index,
-            setCveData,
-            setIsDeleteConfirmationOpen,
-            setDeleteIndex
-          )
-        }
+        onEdit={handleEditClick}
+        onDelete={(index) => {
+          setIsDeleteConfirmationOpen(true);
+          setDeleteIndex(index);
+        }}
       />
       {isModalOpen && (
         <Modal
           cve={editedCve}
-          onSave={(editedCve) =>
+          onSave={(editedCve) => {
             handleSave(
               editedCve,
               editedIndex,
@@ -93,16 +90,16 @@ const CVEManagement = ({ data }) => {
               setIsModalOpen,
               setValidationError,
               cveData
-            )
-          }
-          onCancel={() =>
+            );
+          }}
+          onCancel={() => {
             handleCancel(
               setIsModalOpen,
               setEditedIndex,
               setEditedCve,
               setValidationError
-            )
-          }
+            );
+          }}
           validationError={validationError}
         />
       )}
@@ -115,22 +112,13 @@ const CVEManagement = ({ data }) => {
             <div className="flex justify-end">
               <button
                 className="mr-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                onClick={() =>
-                  confirmDelete(
-                    deleteIndex,
-                    setCveData,
-                    setIsDeleteConfirmationOpen,
-                    cveData
-                  )
-                }
+                onClick={handleConfirmDelete}
               >
                 Confirm
               </button>
               <button
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-                onClick={() =>
-                  cancelDelete(setIsDeleteConfirmationOpen, setDeleteIndex)
-                }
+                onClick={handleCancelDelete}
               >
                 Cancel
               </button>
