@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import filterIcon from "./filter.png";
-import editIcon from "./editIcon.svg";
-import deleteIcon from "./deleteIcon.svg";
+import filterIcon from "./assets/filter.png";
+import editIcon from "./assets/editIcon.svg";
+import deleteIcon from "./assets/deleteIcon.svg";
 
 const MainTable = ({ data, onEdit, onDelete }) => {
   const [filteredData, setFilteredData] = useState(data);

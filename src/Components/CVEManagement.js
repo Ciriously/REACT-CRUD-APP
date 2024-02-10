@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MainTable from "./MainTable";
+import MainTable from "../MainTable";
 import Modal from "./Modal";
 import {
   handleEdit,
@@ -8,7 +8,7 @@ import {
   handleDelete,
   confirmDelete,
   cancelDelete,
-} from "./cveUtils";
+} from "../utils/cveUtils";
 import Banner from "./banner";
 
 const CVEManagement = ({ data }) => {
@@ -24,7 +24,22 @@ const CVEManagement = ({ data }) => {
   const handleAddCve = () => {
     setIsModalOpen(true);
     setEditedIndex(null);
-    setEditedCve({});
+    // Initialize editedCve with an object containing empty strings for all fields
+    setEditedCve({
+      cveId: "",
+      severity: "",
+      cvss: "",
+      affectedPackages: [],
+      cweId: "",
+    });
+    setValidationError(null);
+  };
+
+  const handleEdit = (index) => {
+    setIsModalOpen(true);
+    setEditedIndex(index);
+    // Update editedCve with the existing CVE data, including affected packages
+    setEditedCve({ ...cveData[index] });
     setValidationError(null);
   };
 

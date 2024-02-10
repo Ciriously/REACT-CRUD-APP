@@ -9,10 +9,7 @@ export const handleEdit = (
 ) => {
   setIsModalOpen(true);
   setEditedIndex(index);
-  // Ensure that cveData[index] exists before setting editedCve
-  if (cveData[index]) {
-    setEditedCve(cveData[index]);
-  }
+  setEditedCve({ ...cveData[index] }); // Ensure affected packages are copied correctly
   setValidationError(null);
 };
 
