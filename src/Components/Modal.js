@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 
 const Modal = ({ cve, onSave, onCancel }) => {
-  const [editedCve, setEditedCve] = useState(cve);
+  const [editedCve, setEditedCve] = useState({
+    ...cve,
+    affectedPackages: Array.isArray(cve.affectedPackages)
+      ? cve.affectedPackages
+      : [],
+  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedCve({ ...editedCve, [name]: value });
+    if (name === "affectedPackages") {
+      setEditedCve({ ...editedCve, [name]: value.split(",") });
+    } else {
+      setEditedCve({ ...editedCve, [name]: value });
+    }
   };
-
   const handleSave = () => {
     const newErrors = {};
 
@@ -82,7 +90,7 @@ const Modal = ({ cve, onSave, onCancel }) => {
           <input
             type="text"
             name="affectedPackages"
-            value={editedCve.affectedPackages}
+            value={editedCve.affectedPackages.join(",")}
             onChange={handleChange}
             className="w-full border border-black rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
