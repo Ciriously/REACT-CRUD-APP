@@ -46,7 +46,7 @@ const CVEManagement = ({ data }) => {
     <div className="container mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
         <div className="text-black font-inter p-4 text-center md:text-left">
-          <h1 className="text-4xl mb-1 font-semibold">CVE RECORDS</h1>
+          <h1 className="text-4xl mb-1 font-semibold">📁 CVE RECORDS</h1>
           <p className="text-lg text-gray-500">
             Manage and track your CVE records
           </p>
