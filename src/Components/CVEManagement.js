@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import MainTable from "../MainTable";
 import Modal from "./Modal";
 import {
-  handleSave,
-  handleCancel,
-  handleDelete,
+  openEditModal,
+  saveCve,
+  cancelEdit,
+  initiateDelete,
   confirmDelete,
   cancelDelete,
 } from "../utils/cveUtils";
@@ -34,10 +35,15 @@ const CVEManagement = ({ data }) => {
   };
 
   const handleEditClick = (index) => {
-    setIsModalOpen(true);
-    setEditedIndex(index);
-    setEditedCve({ ...cveData[index] });
-    setValidationError(null);
+    openEditModal(
+      index,
+      setCveData,
+      setIsModalOpen,
+      setEditedIndex,
+      setEditedCve,
+      setValidationError,
+      cveData
+    );
   };
 
   const handleConfirmDelete = () => {
@@ -75,15 +81,14 @@ const CVEManagement = ({ data }) => {
         data={cveData}
         onEdit={handleEditClick}
         onDelete={(index) => {
-          setIsDeleteConfirmationOpen(true);
-          setDeleteIndex(index);
+          initiateDelete(index, setIsDeleteConfirmationOpen, setDeleteIndex);
         }}
       />
       {isModalOpen && (
         <Modal
           cve={editedCve}
           onSave={(editedCve) => {
-            handleSave(
+            saveCve(
               editedCve,
               editedIndex,
               setCveData,
@@ -93,7 +98,7 @@ const CVEManagement = ({ data }) => {
             );
           }}
           onCancel={() => {
-            handleCancel(
+            cancelEdit(
               setIsModalOpen,
               setEditedIndex,
               setEditedCve,

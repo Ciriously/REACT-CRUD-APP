@@ -1,4 +1,4 @@
-export const handleEdit = (
+export const openEditModal = (
   index,
   setCveData,
   setIsModalOpen,
@@ -9,11 +9,15 @@ export const handleEdit = (
 ) => {
   setIsModalOpen(true);
   setEditedIndex(index);
-  setEditedCve({ ...cveData[index] }); // Ensure affected packages are copied correctly
+  // Ensure affected packages are copied correctly
+  setEditedCve({
+    ...cveData[index],
+    affectedPackages: [...cveData[index].affectedPackages],
+  });
   setValidationError(null);
 };
 
-export const handleSave = (
+export const saveCve = (
   editedCve,
   editedIndex,
   setCveData,
@@ -21,29 +25,38 @@ export const handleSave = (
   setValidationError,
   cveData
 ) => {
+  const newErrors = {};
+
+  // Perform input validation
   if (
     !editedCve.cveId ||
     !editedCve.severity ||
     !editedCve.cvss ||
     !editedCve.cweId
   ) {
-    setValidationError("Please fill in all required fields.");
-    return;
+    newErrors.requiredFields = "Please fill in all required fields.";
   }
 
-  const updatedData = [...cveData];
-  if (editedIndex === null) {
-    // Add new CVE record
-    updatedData.push(editedCve);
+  if (Object.keys(newErrors).length > 0) {
+    // Set errors if there are any
+    setValidationError(newErrors);
   } else {
-    // Update existing CVE record
-    updatedData[editedIndex] = { ...updatedData[editedIndex], ...editedCve };
+    // Clear errors if validation passes
+    setValidationError({});
+    const updatedData = [...cveData];
+    if (editedIndex === null) {
+      // Add new CVE record
+      updatedData.push(editedCve);
+    } else {
+      // Update existing CVE record
+      updatedData[editedIndex] = { ...updatedData[editedIndex], ...editedCve };
+    }
+    setCveData(updatedData);
+    setIsModalOpen(false);
   }
-  setCveData(updatedData);
-  setIsModalOpen(false);
 };
 
-export const handleCancel = (
+export const cancelEdit = (
   setIsModalOpen,
   setEditedIndex,
   setEditedCve,
@@ -52,16 +65,14 @@ export const handleCancel = (
   setIsModalOpen(false);
   setEditedIndex(null);
   setEditedCve({}); // Reset editedCve to an empty object
-  setValidationError(null);
+  setValidationError({});
 };
 
-export const handleDelete = (
+export const initiateDelete = (
   index,
-  setCveData,
   setIsDeleteConfirmationOpen,
   setDeleteIndex
 ) => {
-  console.log("Index to delete:", index); // Log the index to be deleted
   setIsDeleteConfirmationOpen(true);
   setDeleteIndex(index); // Pass the index of the item to be deleted
 };
