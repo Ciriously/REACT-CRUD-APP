@@ -91,49 +91,49 @@ const MainTable = ({ data, onEdit, onDelete }) => {
           <thead className="font-inter text-black">
             <tr>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-                <img
-                  src={filterIcon}
-                  alt="Filter"
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                <div
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleSort("cveId")}
-                />
-                CVE-ID
+                >
+                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  CVE-ID
+                </div>
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-                <img
-                  src={filterIcon}
-                  alt="Filter"
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                <div
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleSort("severity")}
-                />
-                Severity
+                >
+                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  Severity
+                </div>
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-                <img
-                  src={filterIcon}
-                  alt="Filter"
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                <div
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleSort("cvss")}
-                />
-                CVSS
+                >
+                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  CVSS
+                </div>
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-                <img
-                  src={filterIcon}
-                  alt="Filter"
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                <div
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleSort("affectedPackages")}
-                />
-                Affected Packages
+                >
+                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  Affected Packages
+                </div>
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
-                <img
-                  src={filterIcon}
-                  alt="Filter"
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-1 w-4 h-4 cursor-pointer"
+                <div
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleSort("cweId")}
-                />
-                CWE-ID
+                >
+                  <img src={filterIcon} alt="Filter" className="w-4 h-4 mr-1" />
+                  CWE-ID
+                </div>
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-s uppercase tracking-wider relative">
                 Actions

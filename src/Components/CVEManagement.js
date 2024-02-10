@@ -9,7 +9,6 @@ import {
   confirmDelete,
   cancelDelete,
 } from "../utils/cveUtils";
-import Banner from "./banner";
 
 const CVEManagement = ({ data }) => {
   const [cveData, setCveData] = useState(data);
@@ -44,15 +43,22 @@ const CVEManagement = ({ data }) => {
   };
 
   return (
-    <div>
-      <Banner />
-      <button
-        onClick={handleAddCve}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-inter font-bold py-2 px-4 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
-      >
-        Add new CVE
-        <img src="/plus.png" alt="Add Icon" className="ml-2 h-4" />
-      </button>
+    <div className="container mx-auto">
+      <div className="md:flex md:justify-between md:items-center">
+        <div className="text-black font-inter p-4 text-center">
+          <h1 className="text-4xl mb-1 font-semibold">CVE RECORDS</h1>
+          <p className="text-lg text-gray-500">
+            Manage and track your CVE records
+          </p>
+        </div>
+        <button
+          onClick={handleAddCve}
+          className="bg-blue-500 hover:bg-blue-800 text-white font-inter font-bold py-3 px-5 rounded my-2 transition duration-300 ease-in-out transform hover:scale-105 flex items-center md:order-2"
+        >
+          <img src="/plus.png" alt="Add Icon" className="mr-2 h-4" />
+          Add new CVE
+        </button>
+      </div>
 
       <MainTable
         data={cveData}
